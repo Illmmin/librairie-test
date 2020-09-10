@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table>
+  
+{% for key in keys %}
+
+{% for k in key %}
+
+<th>{{ k | capitalize }}</th>
+
+{% endfor %}
+
+{% endfor %}
+<th>{{'slug' | capitalize}}</th>
+
+{% for datas in data %}
+
+<tr>
+
+<td>{{ datas.sku}} </td>
+
+<td>{{ datas.title}} </td>
+
+<td>{% if datas.is_enabled == 0 %}
+        {{ 'Disabled' }}
+    {% else %}
+        {{ 'Enabled' }}
+    {% endif %}
+
+ </td>
+
+<td>{{ datas.price}} </td>
+
+<td>{{ datas.currency}} </td>
+
+<td>{{ datas.description | raw }} </td>
+
+<td>{{ datas.created_at | date ("l,d-M-y h:i:s")}} </td>
+
+<td>{{ datas.title | lower | replace({' ': '_', ',': "-"})}} </td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
